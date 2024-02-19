@@ -17,9 +17,9 @@ namespace eStoreAPI.Controllers
     [EnableQuery]
     public class CategoriesController : ODataController
     {
-        private readonly EStoreContext _context;
+        private readonly AppDbContext _context;
 
-        public CategoriesController(EStoreContext context)
+        public CategoriesController(AppDbContext context)
         {
             _context = context;
         }

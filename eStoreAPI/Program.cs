@@ -2,6 +2,7 @@ using BusinessObject;
 using eStoreAPI.Models;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
+using System.Text.Json.Serialization;
 
 namespace eStoreAPI
 {
@@ -23,11 +24,15 @@ namespace eStoreAPI
                 option.Select().OrderBy().Filter().Count().Expand().SetMaxTop(100)
                 .AddRouteComponents("odata", modelBuilder.GetEdmModel()));
 
-            builder.Services.AddDbContext<EStoreContext>();
+            builder.Services.AddDbContext<AppDbContext>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
 
             var app = builder.Build();
 
