@@ -1,3 +1,4 @@
+using BusinessObject;
 using eStoreAPI.Models;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
