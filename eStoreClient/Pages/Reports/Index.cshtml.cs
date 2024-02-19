@@ -10,6 +10,7 @@ using Repository.Implements;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using BusinessObject;
+//using Newtonsoft.Json;
 
 namespace eStoreClient.Pages.Report
 {
@@ -31,6 +32,9 @@ namespace eStoreClient.Pages.Report
 
         public IList<Order> Order { get;set; } = default!;
 
+        public DateTime fromDate = DateTime.Now;
+        public DateTime toDate = DateTime.Now.AddDays(14);
+
         public async Task OnGetAsync()
         {
             HttpResponseMessage respone = await client.GetAsync(OrderApiUlr);
@@ -40,6 +44,18 @@ namespace eStoreClient.Pages.Report
                 PropertyNameCaseInsensitive = true
             };
             Order = (IList<Order>)JsonSerializer.Deserialize<List<Order>>(strData, options);
+        }
+
+        public async Task OnPostAsync()
+        {
+            HttpResponseMessage response = await client.GetAsync($"{OrderApiUlr}$?filter=OrderDate gt {fromDate}");
+            string strData = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            Order = (IList<Order>)JsonSerializer.Deserialize<List<Order>>(strData, options);
+            response.EnsureSuccessStatusCode();
         }
     }
 }
