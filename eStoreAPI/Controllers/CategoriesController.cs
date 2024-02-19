@@ -14,6 +14,7 @@ namespace eStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableQuery]
     public class CategoriesController : ODataController
     {
         private readonly EStoreContext _context;

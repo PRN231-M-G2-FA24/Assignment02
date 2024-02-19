@@ -10,11 +10,13 @@ using Repository;
 using BusinessObject;
 using Repository.Implements;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace eStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableQuery]
     public class ProductsController : ODataController
     {
         
