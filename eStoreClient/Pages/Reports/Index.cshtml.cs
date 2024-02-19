@@ -11,7 +11,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using BusinessObject;
 
-namespace eStoreClient.Pages.OrderView
+namespace eStoreClient.Pages.Report
 {
     public class IndexModel : PageModel
     {

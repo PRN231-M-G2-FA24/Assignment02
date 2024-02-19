@@ -34,7 +34,9 @@ namespace eStoreAPI
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("v1/swagger.json", "eStoreAPI");
+                });
             }
 
             app.UseHttpsRedirection();
